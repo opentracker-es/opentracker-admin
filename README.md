@@ -80,6 +80,45 @@ docker pull ghcr.io/opentracker-es/opentracker-admin:1.0.0
 
 **Plataformas soportadas:** linux/amd64, linux/arm64
 
+### Variables de Entorno en Docker
+
+La imagen soporta dos tipos de variables:
+
+#### Variables Runtime (configurables en docker-compose)
+
+Estas variables se pueden cambiar **sin reconstruir la imagen**:
+
+| Variable | Descripción | Default |
+|----------|-------------|---------|
+| `NEXT_PUBLIC_API_URL` | URL de la API | (requerida) |
+| `NEXT_PUBLIC_APP_NAME` | Nombre de la aplicación | `OpenTracker` |
+| `NEXT_PUBLIC_APP_LOGO` | Ruta al logo | `/logo.png` |
+
+```yaml
+# docker-compose.yml
+services:
+  admin:
+    image: ghcr.io/opentracker-es/opentracker-admin:latest
+    environment:
+      - NEXT_PUBLIC_API_URL=https://mi-dominio.com/api
+      - NEXT_PUBLIC_APP_NAME=Mi Empresa
+      - NEXT_PUBLIC_APP_LOGO=/mi-logo.png
+```
+
+#### Variables Build-time (requieren reconstruir imagen)
+
+Estas variables se configuran en **GitHub Actions** como repository variables:
+
+| Variable | Descripción | Default |
+|----------|-------------|---------|
+| `NEXT_PUBLIC_BASE_PATH` | Path base para routing (ej: `/admin`) | `` (vacío) |
+
+Para cambiar el `basePath`, actualiza la variable en GitHub → Settings → Secrets and variables → Actions → Variables, y ejecuta el workflow.
+
+### Cómo funciona
+
+La imagen usa un `docker-entrypoint.sh` que reemplaza placeholders con los valores de las variables de entorno al iniciar el contenedor. Esto permite usar la misma imagen en diferentes entornos.
+
 ## Despliegue con Docker
 
 Para desplegar en producción con Docker:
@@ -97,7 +136,7 @@ docker-compose -f docker-compose.prod.yml up -d
 - Multi-stage build para optimizar el tamaño de la imagen (~200MB)
 - Next.js standalone mode habilitado
 - Usuario no-root para seguridad
-- Healthcheck incluido
+- Runtime environment injection via docker-entrypoint.sh
 - Auto-restart en caso de fallo
 
 Para más detalles, ver [README.Docker.md](./README.Docker.md)
