@@ -1,6 +1,6 @@
-# OpenTracker Admin
+# OpenJornada Admin
 
-Panel de administración web para OpenTracker - Sistema de gestión de registros de jornada laboral.
+Panel de administración web para OpenJornada - Sistema de gestión de registros de jornada laboral.
 
 ## Características
 
@@ -25,7 +25,7 @@ Panel de administración web para OpenTracker - Sistema de gestión de registros
 
 - Node.js 18+
 - npm o yarn
-- La API de OpenTracker corriendo en `http://localhost:8080`
+- La API de OpenJornada corriendo en `http://localhost:8080`
 
 ## Instalación
 
@@ -41,14 +41,14 @@ Copiar `.env.example` a `.env` y configurar:
 
 ```bash
 NEXT_PUBLIC_API_URL=http://localhost:8080
-NEXT_PUBLIC_APP_NAME=OpenTracker
+NEXT_PUBLIC_APP_NAME=OpenJornada
 NEXT_PUBLIC_APP_LOGO=/logo.png
 ```
 
 **Variables de entorno disponibles:**
 
-- `NEXT_PUBLIC_API_URL`: URL de la API de OpenTracker (por defecto: `http://localhost:8080`)
-- `NEXT_PUBLIC_APP_NAME`: Nombre de la aplicación que se muestra en la UI (por defecto: `OpenTracker`)
+- `NEXT_PUBLIC_API_URL`: URL de la API de OpenJornada (por defecto: `http://localhost:8080`)
+- `NEXT_PUBLIC_APP_NAME`: Nombre de la aplicación que se muestra en la UI (por defecto: `OpenJornada`)
 - `NEXT_PUBLIC_APP_LOGO`: Ruta al logo de la aplicación (por defecto: `/logo.png`). Debe estar en la carpeta `public/`
 
 3. Ejecutar en modo desarrollo:
@@ -72,10 +72,10 @@ La imagen oficial está disponible en GitHub Container Registry:
 
 ```bash
 # Última versión
-docker pull ghcr.io/opentracker-es/opentracker-admin:latest
+docker pull ghcr.io/openjornada/openjornada-admin:latest
 
 # Versión específica
-docker pull ghcr.io/opentracker-es/opentracker-admin:1.0.0
+docker pull ghcr.io/openjornada/openjornada-admin:1.0.0
 ```
 
 **Plataformas soportadas:** linux/amd64, linux/arm64
@@ -91,14 +91,14 @@ Estas variables se pueden cambiar **sin reconstruir la imagen**:
 | Variable | Descripción | Default |
 |----------|-------------|---------|
 | `NEXT_PUBLIC_API_URL` | URL de la API | (requerida) |
-| `NEXT_PUBLIC_APP_NAME` | Nombre de la aplicación | `OpenTracker` |
+| `NEXT_PUBLIC_APP_NAME` | Nombre de la aplicación | `OpenJornada` |
 | `NEXT_PUBLIC_APP_LOGO` | Ruta al logo | `/logo.png` |
 
 ```yaml
 # docker-compose.yml
 services:
   admin:
-    image: ghcr.io/opentracker-es/opentracker-admin:latest
+    image: ghcr.io/openjornada/openjornada-admin:latest
     environment:
       - NEXT_PUBLIC_API_URL=https://mi-dominio.com/api
       - NEXT_PUBLIC_APP_NAME=Mi Empresa
@@ -144,7 +144,7 @@ Para más detalles, ver [README.Docker.md](./README.Docker.md)
 ## Estructura del proyecto
 
 ```
-opentracker-admin/
+openjornada-admin/
 ├── src/
 │   ├── app/                 # Páginas de Next.js (App Router)
 │   │   ├── login/           # Página de login
@@ -207,7 +207,7 @@ Puedes personalizar el nombre y logo de la aplicación mediante las variables de
 
 ### Colores del tema
 
-El diseño utiliza los mismos colores que la landing page de OpenTracker:
+El diseño utiliza los mismos colores que la landing page de OpenJornada:
 
 - **Accent**: Verde (`oklch(0.65 0.2 150)`)
 - Soporte para modo claro y oscuro
@@ -248,9 +248,9 @@ Las contribuciones son bienvenidas. Por favor abre un issue antes de hacer cambi
 
 ## 🔗 Enlaces
 
-- **Sitio web**: [www.opentracker.es](https://www.opentracker.es)
-- **Email**: info@opentracker.es
+- **Sitio web**: [www.openjornada.es](https://www.openjornada.es)
+- **Email**: info@openjornada.es
 
 ---
 
-Parte del proyecto [OpenTracker](https://www.opentracker.es)
+Parte del proyecto [OpenJornada](https://www.openjornada.es)

@@ -60,7 +60,7 @@ export default function SettingsPage() {
     sftp_port: 22,
     sftp_username: "",
     sftp_password: "",
-    sftp_remote_path: "/backups/opentracker/",
+    sftp_remote_path: "/backups/openjornada/",
     local_path: "/app/backups"
   });
 
@@ -93,7 +93,7 @@ export default function SettingsPage() {
           s3_endpoint_url: bc.s3_endpoint || "",
           s3_bucket_name: bc.s3_bucket || "",
           sftp_host: bc.sftp_host || "",
-          sftp_remote_path: bc.sftp_path || "/backups/opentracker/",
+          sftp_remote_path: bc.sftp_path || "/backups/openjornada/",
           local_path: bc.local_path || "/app/backups"
         }));
       }
@@ -472,7 +472,7 @@ export default function SettingsPage() {
                               name="s3_bucket_name"
                               value={backupForm.s3_bucket_name}
                               onChange={handleBackupChange}
-                              placeholder="opentracker-backups"
+                              placeholder="openjornada-backups"
                               className="w-full px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
                             />
                           </div>
@@ -572,7 +572,7 @@ export default function SettingsPage() {
                               name="sftp_remote_path"
                               value={backupForm.sftp_remote_path}
                               onChange={handleBackupChange}
-                              placeholder="/backups/opentracker/"
+                              placeholder="/backups/openjornada/"
                               className="w-full px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
                             />
                           </div>

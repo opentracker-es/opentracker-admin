@@ -1,12 +1,12 @@
 {
-  "name": "opentracker-admin",
+  "name": "openjornada-admin",
   "version": "1.0.0",
-  "description": "OpenTracker Admin Panel - Sistema de Registro de Jornada Laboral",
+  "description": "OpenJornada Admin Panel - Sistema de Registro de Jornada Laboral",
   "license": "AGPL-3.0",
-  "author": "OpenTracker Contributors",
+  "author": "OpenJornada Contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/[YOUR-ORG]/opentracker"
+    "url": "https://github.com/[YOUR-ORG]/openjornada"
   },
   "private": true,
   "scripts": {
