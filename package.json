@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "OpenJornada Admin Panel - Sistema de Registro de Jornada Laboral",
   "license": "AGPL-3.0",
-  "author": "OpenJornada Contributors",
+  "author": {
+    "name": "HappyAndroids",
+    "url": "https://happyandroids.com"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/[YOUR-ORG]/openjornada"
+    "url": "https://github.com/openjornada/openjornada-admin"
   },
+  "homepage": "https://www.openjornada.es",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3001",

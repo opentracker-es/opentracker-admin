@@ -272,7 +272,7 @@ By contributing to this OpenJornada component, you agree that:
 ```typescript
 /*
  * OpenJornada - Sistema de Registro de Jornada Laboral
- * Copyright (C) 2024 OpenJornada Contributors
+ * Copyright (C) 2024 HappyAndroids (https://happyandroids.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
