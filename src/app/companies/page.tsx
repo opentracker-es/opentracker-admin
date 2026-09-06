@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import AppWrapper from "@/components/AppWrapper";
 import Link from "next/link";
 import { apiClient, type Company } from "@/lib/api-client";
+import { toIntlLocale, type Locale } from "@/i18n/config";
 import toast from "react-hot-toast";
 import { getApiErrorMessage } from "@/lib/error-messages";
 import { AiOutlinePlus, AiOutlineEdit, AiOutlineDelete, AiOutlineBank } from "react-icons/ai";
@@ -56,7 +57,7 @@ export default function CompaniesPage() {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString(locale, {
+    return new Date(dateString).toLocaleDateString(toIntlLocale(locale as Locale), {
       year: "numeric",
       month: "long",
       day: "numeric",

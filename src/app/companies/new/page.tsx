@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import AppWrapper from "@/components/AppWrapper";
 import Link from "next/link";
-import { apiClient } from "@/lib/api-client";
+import { apiClient, type SupportedLocale } from "@/lib/api-client";
+import { locales } from "@/i18n/config";
 import toast from "react-hot-toast";
 import { getApiErrorMessage } from "@/lib/error-messages";
 import { AiOutlineArrowLeft, AiOutlineBank } from "react-icons/ai";
@@ -13,9 +14,12 @@ import { AiOutlineArrowLeft, AiOutlineBank } from "react-icons/ai";
 export default function NewCompanyPage() {
   const t = useTranslations("companies");
   const tc = useTranslations("common");
+  const tl = useTranslations("common.language");
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
+  // Company notification language: independent of the admin's UI language.
+  const [notificationLanguage, setNotificationLanguage] = useState<SupportedLocale>("es");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +38,10 @@ export default function NewCompanyPage() {
     setLoading(true);
 
     try {
-      await apiClient.createCompany({ name: name.trim() });
+      await apiClient.createCompany({
+        name: name.trim(),
+        notification_language: notificationLanguage,
+      });
       toast.success(t("created"));
       router.push("/companies");
     } catch (error) {
@@ -83,6 +90,28 @@ export default function NewCompanyPage() {
               <p className="text-xs text-muted-foreground mt-1">
                 {t("nameHelp")}
               </p>
+            </div>
+
+            {/* Notification language (per-company, independent of admin UI language) */}
+            <div>
+              <label htmlFor="notification_language" className="block text-sm font-medium text-foreground mb-2">
+                {t("notifLangLabel")} <span className="text-destructive">*</span>
+              </label>
+              <select
+                id="notification_language"
+                name="notification_language"
+                value={notificationLanguage}
+                onChange={(e) => setNotificationLanguage(e.target.value as SupportedLocale)}
+                className="w-full max-w-xs px-4 py-2 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                disabled={loading}
+              >
+                {locales.map((code) => (
+                  <option key={code} value={code}>
+                    {tl(code)}
+                  </option>
+                ))}
+              </select>
+              <p className="text-xs text-muted-foreground mt-1">{t("notifLangHelp")}</p>
             </div>
 
             <div className="flex gap-4 pt-4">

@@ -1,6 +1,5 @@
 import axios, { AxiosInstance, AxiosError } from "axios";
 import { appConfig } from "./config";
-import { getApiErrorMessage } from "./error-messages";
 
 const API_URL = appConfig.apiUrl;
 
@@ -204,6 +203,7 @@ interface Company {
 
 interface CreateCompanyData {
   name: string;
+  notification_language?: SupportedLocale;
 }
 
 interface UpdateCompanyData {
@@ -691,9 +691,6 @@ class ApiClient {
             window.location.href = `${appConfig.basePath}/login`;
           }
         }
-        // Attach the localized user-facing message (error_code catalog with
-        // fallbacks) so any catch site can use `getApiErrorMessage(error)`.
-        (error as AxiosError & { userMessage?: string }).userMessage = getApiErrorMessage(error);
         return Promise.reject(error);
       }
     );
