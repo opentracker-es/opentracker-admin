@@ -32,7 +32,7 @@
     "searchWorker": "Cercar per treballador",
     "searchPlaceholder": "Cercar per nom o cognoms...",
     "filter": "Filtrar",
-    "filtering": "Filrant...",
+    "filtering": "Filtrant...",
     "clearFilters": "Netejar",
     "close": "Tancar",
     "detail": "Detall",
@@ -532,7 +532,7 @@
     "attachmentError": "Error en descarregar el justificant",
     "validationErrors": "Errors de Validació",
     "cannotApprove": "Aquesta sol·licitud NO pot ser acceptada a causa dels errors de validació. Només pots rebutjar-la.",
-    "warnings": "Avissos",
+    "warnings": "Avisos",
     "warningsNote": "Aquests avisos no bloquegen l'aprovació, però convé revisar-los.",
     "canApprove": "✓ La sol·licitud és vàlida i pot ser aprovada",
     "adminReview": "Revisió de l'Administrador",
@@ -558,8 +558,8 @@
     "updated": "Absència actualitzada correctament",
     "updateError": "Error en actualitzar l'absència",
     "showingFiltered": "Mostrant {shown, plural, one {# absència} other {# absències}} (filtrat per \"{term}\") de {total} en total",
-    "noEnabledCompany": "Cap empresa té activada la gestió d’absències.",
-    "enableInCompany": "Habilita-la a la fitxa de l’empresa"
+    "noEnabledCompany": "Cap empresa té activada la gestió d'absències.",
+    "enableInCompany": "Habilita-la a la fitxa de l'empresa"
   },
   "calendar": {
     "title": "Calendari d'Equip",
@@ -571,13 +571,13 @@
     "loadError": "Error en carregar el calendari d'absències",
     "emptyMonth": "No hi ha absències aprovades aquest mes.",
     "weekdays": [
-      "Ddl",
-      "Dmt",
-      "Dmc",
-      "Dij",
-      "Dvr",
-      "Dds",
-      "Ddg"
+      "dl",
+      "dt",
+      "dc",
+      "dj",
+      "dv",
+      "ds",
+      "dg"
     ]
   },
   "absencePolicy": {
@@ -1037,7 +1037,7 @@
     "statSkipped": "Omesos",
     "statErrors": "Errors",
     "importBtn": "Importar",
-    "importing": "Importat...",
+    "importing": "Important...",
     "downloadErrorReport": "Descarregar informe d'errors",
     "recheck": "Tornar a comprovar",
     "newImport": "Nova importació",
