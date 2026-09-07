@@ -3,6 +3,9 @@ import { appConfig } from "./config";
 
 const API_URL = appConfig.apiUrl;
 
+/** Locales supported by the API contract (shared with the i18n catalogs). */
+export type SupportedLocale = "es" | "en" | "ca";
+
 interface LoginResponse {
   access_token: string;
   token_type: string;
@@ -15,6 +18,8 @@ interface APIUser {
   role: "admin" | "tracker" | "inspector";
   is_active: boolean;
   created_at?: string;
+  /** Admin UI language preference; null/undefined = no preference (browser detection). */
+  language?: SupportedLocale | null;
 }
 
 interface CreateWorkerData {
@@ -156,12 +161,16 @@ interface SmsStats {
 }
 
 interface SmsTemplateResponse {
-  template: string;
-  default_template: string;
+  /** Customized templates by locale (locales absent here use the defaults). */
+  templates: Record<string, string>;
+  /** Default template per locale, served by the API. */
+  default_templates: Record<string, string>;
+  supported_locales: string[];
   available_tags: { tag: string; description: string; example: string }[];
 }
 
 interface SmsTemplateUpdate {
+  locale: string;
   template: string;
 }
 
@@ -188,15 +197,19 @@ interface Company {
   deleted_at?: string;
   deleted_by?: string;
   absence_management_enabled: boolean;
+  /** Language used for this company's notifications to workers (default "es"). */
+  notification_language?: SupportedLocale;
 }
 
 interface CreateCompanyData {
   name: string;
+  notification_language?: SupportedLocale;
 }
 
 interface UpdateCompanyData {
   name?: string;
   absence_management_enabled?: boolean;
+  notification_language?: SupportedLocale;
 }
 
 interface Incident {
@@ -731,6 +744,15 @@ class ApiClient {
     return response.data;
   }
 
+  /**
+   * Update the authenticated admin's own UI language preference.
+   * `null` clears the preference (frontend falls back to browser detection).
+   */
+  async updateMyLanguage(language: SupportedLocale | null): Promise<APIUser> {
+    const response = await this.client.patch<APIUser>("/api/users/me", { language });
+    return response.data;
+  }
+
   logout() {
     this.clearToken();
     if (typeof window !== "undefined") {
@@ -1168,8 +1190,10 @@ class ApiClient {
     return response.data;
   }
 
-  async resetSmsTemplate(): Promise<SmsTemplateResponse> {
-    const response = await this.client.delete<SmsTemplateResponse>("/api/sms/template");
+  async resetSmsTemplate(locale: string): Promise<SmsTemplateResponse> {
+    const response = await this.client.delete<SmsTemplateResponse>("/api/sms/template", {
+      params: { locale },
+    });
     return response.data;
   }
 
